@@ -172,11 +172,12 @@ def load_search_list():
     global SEARCH_TXT
 
     file = open(SEARCH_TXT, "r")
-    readline_list = []
-
-    for readline in file:
-        readline_list.append(readline)
-
+    readlines_raw = file.readlines()
     file.close()
-    return readline_list
+    
+    readlines_clean = []
+    for lines in readlines_raw:
+        readlines_clean.append(lines.strip())
+
+    return readlines_clean
   
