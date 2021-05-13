@@ -23,13 +23,13 @@ class Bing:
     """
     Automation function for Bing
     """
-    global LOGIN_BTN, LOGOUT_BTN
+    global SEARCH_TXT, LOGIN_BTN, LOGOUT_BTN
     global TOP_SEARCHBAR_BTN, USER_ACCOUNT_BTN
 
     def __init__(self, username, password):
         self._username = username
         self._password = password
-        self._search_list = load_search_list()
+        self._search_list = txt_file_to_list(SEARCH_TXT)
         self._used_search_list = []
 
     def search(self):
@@ -164,14 +164,12 @@ def open_web_browser():
         sys.exit()
 
 
-def load_search_list():
+def txt_file_to_list(filename):
     """
-    Read and transfer from .txt file into a list.
-    :return: list: list of searches
+    Read, clean and transfer from .txt file into a list.
+    :return: list: A list of readlines that has been strip of spaces.
     """
-    global SEARCH_TXT
-
-    file = open(SEARCH_TXT, "r")
+    file = open(filename, "r")
     readlines_raw = file.readlines()
     file.close()
     
